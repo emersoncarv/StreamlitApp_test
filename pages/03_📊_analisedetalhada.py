@@ -6,7 +6,11 @@ st.header("Distribuição dos Dados")
 if 'dados' not in st.session_state:
     st.error("Os dados não foram carregados")
 else:
-    dados = st.session_state['dados']
+    #dados = st.session_state['dados']
+    top_n = st.session_state.get('top_n', 10)
+    dados_brutos = st.session_state['dados']
+    dados = dados_brutos.head(top_n)
+
     col1, col2 = st.columns(2)
     with col1:
         fig1 = px.histogram(dados, x='VALOREMPENHO', 
